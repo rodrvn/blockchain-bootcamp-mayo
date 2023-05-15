@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+    
+    {% block tittle %} Ver cadena {% endblock %}
+
+    {% block bodycontent %}
+
+    <form action="{{ url_for('cadena_completa') }}" method="get">
+
+      {% for bloque in cadena %}
+        <div class="mb-8 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 overflow-hidden bg-white shadow sm:rounded-lg">
+          <div class="mx-auto max-w-3xl">
+            <div class="px-4 py-5 sm:px-6">
+              <h3 class="text-base font-semibold leading-6 text-gray-900">Informacion del bloque {{ bloque['index'] }}</h3>
+              <p class="mt-1 max-w-2xl text-sm text-gray-500">Aca podes ver toda la info del bloque.</p>
+            </div>
+            <div class="border-t border-gray-200">
+              <dl>
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt class="text-sm font-medium text-gray-500">Nonce</dt>
+                  <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"> {{ bloque['nonce'] }} </dd>
+                </div>
+                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt class="text-sm font-medium text-gray-500">Transaccion</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                      {% for transaccion in bloque['transacciones'] %}
+                      {{ transaccion }} <br>
+                      {% endfor %}
+                    </dd>
+                </div>
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt class="text-sm font-medium text-gray-500">timestamp</dt>
+                  <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ bloque['timestamp'] }}</dd>
+                </div>
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt class="text-sm font-medium text-gray-500">Hash anterior</dt>
+                  <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ bloque['hash_anterior'] }}</dd>
+                </div>
+                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt class="text-sm font-medium text-gray-500">Hash actual</dt>
+                  <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ bloque['hash'] }}</dd>
+              </dl>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="absolute  inset-0 flex items-center" aria-hidden="true">
+              <div class="w-full border-t border-gray-300"></div>
+            </div>
+            <div class="relative py-8 flex justify-center">
+              <span class="bg-white px-2 text-gray-500">
+                <svg class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+      
+      {% endfor %}
+          
+
+    
+    </form>
+
+    
+    {% endblock %}

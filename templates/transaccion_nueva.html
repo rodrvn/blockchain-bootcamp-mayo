@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+    
+    {% block tittle %} transaccion nueva {% endblock %}
+    {% block js %}
+        <script>
+            function show_options(){
+                var solutions = document.getElementById("options");
+                if(solutions.classList.contains("hidden")){
+                    solutions.classList.remove("hidden")
+                } else {
+                    solutions.classList.add("hidden")
+                }
+            }
+        </script> 
+    {% endblock %}
+    {% block bodycontent %}
+
+
+
+    <form action="{{ url_for('nueva_transaccion', id = nueva_transaccion) }}" method="POST">
+ 
+    <div class="bg-white py-16 sm:py-24 lg:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="max-w-2xl text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                <h2 class="inline sm:block">Desea enviar una transaccion?</h2>
+                <p class="inline sm:block">Enviala aqui</p>
+            </div>
+            
+                <div class="flex gap-x-4">
+                    <label for="nueva_transaccion" class="sr-only">Ingrese su transaccion</label>
+                    <input id="nueva_transaccion" name="nueva_transaccion" type="text" required class="min-w-0 flex-auto rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Ej: Rodri 1 PC a Satoshi">
+                    <div class="inline-flex rounded-md shadow-sm">
+
+                        <!-- Empieza boton con js -->
+                        <button type="submit" class="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">Enviar transaccion</button>
+                        <div class="relative -ml-px block">
+                          <button onclick="show_options()" type="button" class="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500" id="option-menu-button" aria-expanded="true" aria-haspopup="true">
+                            <span class="sr-only">Abrir opciones</span>
+                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                            </svg>
+                          </button>
+                      
+                          <div id="options" class="hidden absolute right-0 z-10 mt-2 -mr-1 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1">
+                            <div class="py-1" role="none">
+                              <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                              <a href="#" type="submit" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-0">Enviar y minar</a>
+                      
+                              <a href="/cerrar" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-1">Ir a minar</a>
+                      
+                              <a href="/cadena" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="option-menu-item-2">Ver los bloques</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                </div>
+                <p class="mt-4 text-sm leading-6 text-gray-900">Si desea ver todos los bloques clique <a href="/cadena" class="font-semibold text-indigo-600 hover:text-indigo-500">&nbsp;aqui</a>.</p>
+            
+        </div>
+    </div>
+  
+    </form>
+
+
+
+    {% endblock %}
